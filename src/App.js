@@ -38,11 +38,11 @@ class App extends Component {
   return (
     <div className="App">
       <input className='search-box' type='search' placeholder='search here' onChange={(event)=>{
-         const searchField= event.target.value.toLocaleLowerCase();
+         const searchBox= event.target.value.toLocaleLowerCase();
 
           this.setState(
             ()=>{
-              return {searchField};
+              return {searchField:searchBox};
             });
       }}
       />
