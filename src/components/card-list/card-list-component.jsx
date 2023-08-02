@@ -1,5 +1,7 @@
 import { Component } from "react";
-
+import './card-list.styles.css'
+import './card.styles.css'
+import CardContainer from "./card-list container";
 class Cardlist extends Component{
 
     render()
@@ -7,17 +9,17 @@ class Cardlist extends Component{
         const { monstersprops} = this.props;
         console.log('render');
         //console.log(monstersprops)
+
       return(
-        <div>
-          {
-          monstersprops.map((data)=> (      
-          <div key={data.id}>
-          <h1> {data.name} </h1>
-          </div>
-          ))
-        }
-          </div>
-);
+        <div className='card-list'>
+        {
+        monstersprops.map((data)=>{ 
+          return( <CardContainer monstersprops1={data}/>
+          );
+        })}
+        </div>
+      )
+
         
     }
   }

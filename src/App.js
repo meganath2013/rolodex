@@ -9,7 +9,8 @@ class App extends Component {
   constructor(){
     super();
     this.state=
-    {monsters:[],
+    {
+      monsters:[],
       searchField:''
     };
   }
@@ -51,7 +52,7 @@ class App extends Component {
 
   return (
     <div className="App">
-      <SearchBox classNamepro='search-box'  placeholderpro = 'search monsters' onchangefunction={onChangeSearchBox}/>
+      <SearchBox classNamepro='search-box-app'  placeholderpro = 'search monsters' onchangefunction={onChangeSearchBox}/>
       <Cardlist monstersprops={filteredMonsters}/>
       </div>
       );
