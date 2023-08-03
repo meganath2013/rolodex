@@ -1,30 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
-import { Component } from 'react';
+import { useEffect } from 'react';
 import Cardlist from './components/card-list/card-list-component';
 import SearchBox from './components/search-box/search-box-component';
 
 import { useState } from 'react';
 const App =()=>  {
 
+const [monsters,setMonsters]=useState([]);
+const [searchField, setSearchField] = useState('');
+const [filteredMonsters, setfilteredMonsters] = useState(monsters);
 
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then( response => response.json())
+    .then( data => setMonsters(data))
+  },[])
 
-  // componentDidMount() {
-  //   fetch('https://jsonplaceholder.typicode.com/users')
-  //   .then( response => response.json())
-  //   .then( data => 
-  //     this.setState(
-  //       ()=>{
-  //         return {monsters:data};
-  //       },
-  //       ()=>{
-  //         //console.log(this.state.monsters)
-  //       }
-  //     )
-  //     )
-  // }
-
-  const [searchField, setSearchField] = useState('');
+ 
   console.log(searchField)
 
   const onChangeSearchBox = (event) =>
@@ -33,20 +26,21 @@ const App =()=>  {
   setSearchField(searchdata);
  }
 
+ useEffect(()=>{
+  console.log('2nd effect fired')
+  const newfilteredMonsters=monsters.filter(data=>
+    {
+      return data.name.toLocaleLowerCase().includes(searchField);
+    });
+    setfilteredMonsters(newfilteredMonsters);
 
+ },[monsters,searchField])
 
-  // render(){   
-  //   const {monsters, searchField} =this.state
-  //   const {onChangeSearchBox} =this
-  //   const filteredMonsters=monsters.filter(data=>
-  //     {
-  //       return data.name.toLocaleLowerCase().includes(searchField);
-  //     });
 
   return (
     <div className="App">
       <SearchBox classNamepro='search-box-app'  placeholderpro = 'search monsters' onchangefunction={onChangeSearchBox}/>
-      {/* <Cardlist monstersprops={filteredMonsters}/> */}
+      <Cardlist monstersprops={filteredMonsters}/>
       </div>
       );
     

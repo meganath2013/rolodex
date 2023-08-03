@@ -1,9 +1,8 @@
 import { Component } from "react"
 
-class CardContainer extends Component{
-    render()
-    {
-    const {id, name } =this.props.monstersprops1
+const CardContainer =(props) =>
+{
+    const {id, name } =props.monstersprops1
 return(
             <div key={id} className="card-container">
             <img src={`https://robohash.org/${id}}?set=set2`} alt={`monster ${name}`} />
@@ -12,9 +11,6 @@ return(
         )
     
     }   
-
-    
-}
 
 
 export default CardContainer
